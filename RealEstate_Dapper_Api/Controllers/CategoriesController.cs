@@ -50,7 +50,7 @@ namespace RealEstate_Dapper_Api.Controllers
 
         public async Task<IActionResult> GetCategory(int id)
         {
-            var value=_categoryRepository.GetCategory(id);
+            var value = await _categoryRepository.GetCategory(id);
             return Ok(value);
         }
 
