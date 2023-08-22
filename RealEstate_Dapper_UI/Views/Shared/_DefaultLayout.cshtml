@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="tr">
+@await Component.InvokeAsync("_HeaderPartial")
+<body>
+    @await Component.InvokeAsync("_NavbarPartial")
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about pt-5">
+            <div class="container pt-lg-5 py-3">
+            </div>
+        </div>
+    </section>
+    @RenderBody()
+    @await Component.InvokeAsync("_FooterPartial")
+    @await Component.InvokeAsync("_ScriptPartial")
+</body>
+</html>
