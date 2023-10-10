@@ -7,7 +7,7 @@
     <div class="row g-4">
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Responsive Table</h6>
+                <h6 class="mb-4">Kategori Listesi</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -25,14 +25,25 @@
                                 <tr>
                                     <th scope="row">@item.CategoryID</th>
                                     <td>@item.CategoryName</td>
-                                    <td>@item.CategoryStatus</td>
-                                    <td><a class="btn btn-outline-danger">Sil</a></td>
-                                    <td><a class="btn btn-outline-success">Güncelle</a></td>
+                                    @if (item.CategoryStatus == true)
+                                    {
+                                        <td>
+                                            <i class="fa fa-check-circle" style="color: #34c38f"></i> Aktif
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <i class="fa fa-times-circle" style="color: #f46a6a"></i> Pasif
+                                        </td>
+                                    }
+                                    <td><a href="/Category/DeleteCategory/@item.CategoryID" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/Category/UpdateCategory/@item.CategoryID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <a class="btn btn-outline-primary">Yeni Kategori Girişi</a>
+                    <a href="/Category/CreateCategory/" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
                 </div>
             </div>
         </div>
