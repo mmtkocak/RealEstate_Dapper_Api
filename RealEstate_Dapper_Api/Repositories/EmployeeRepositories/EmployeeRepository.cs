@@ -16,7 +16,7 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
         public async void CreateEmployee(CreateEmployeeDto createEmployeeDto)
         {
             string query = "insert into Employee (Name,Title,Mail,PhoneNumber,ImageUrl,Status) values" +
-                " (@name,title,mail,phonenumber,imageurl,status)";
+                " (@name,@title,@mail,@phonenumber,@imageurl,@status)";
             var parameters = new DynamicParameters();
             parameters.Add("@name", createEmployeeDto.Name);
             parameters.Add("@title", createEmployeeDto.Title);
