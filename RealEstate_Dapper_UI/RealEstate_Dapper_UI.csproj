@@ -51,10 +51,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\EstateAgent\Data\" />
+    <Folder Include="Areas\EstateAgent\Models\" />
     <Folder Include="wwwroot\cityimages\" />
   </ItemGroup>
 
