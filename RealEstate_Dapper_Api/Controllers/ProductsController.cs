@@ -45,10 +45,17 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok("İlan Günün Fırsatları Arasından Çıkarıldı");
         }
 
-        [HttpGet("LastProductList")]
-        public async Task<IActionResult> LastProductList()
+        [HttpGet("Last5ProductList")]
+        public async Task<IActionResult> Last5ProductList()
         {
             var values = await _productRepository.GetLast5ProductAsync();
+            return Ok(values);
+        }
+
+        [HttpGet("ProductAdvertsListByEmployee")]
+        public async Task<IActionResult> ProductAdvertsListByEmployee(int id)
+        {    
+            var values=await _productRepository.GetAllProductAdvertListByEmployeeAsync(id);
             return Ok(values);
         }
     }

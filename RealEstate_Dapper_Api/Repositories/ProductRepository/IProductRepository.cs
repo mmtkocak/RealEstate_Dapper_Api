@@ -11,5 +11,8 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
         void ProductDealOfTheDayStatusChangeToFalse(int id);
 
         Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync();
+
+
+        Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetAllProductAdvertListByEmployeeAsync(int id);
     }
 }
