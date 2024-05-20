@@ -52,10 +52,18 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok(values);
         }
 
-        [HttpGet("ProductAdvertsListByEmployee")]
-        public async Task<IActionResult> ProductAdvertsListByEmployee(int id)
+        [HttpGet("ProductAdvertsListByEmployeeByTrue")]
+        public async Task<IActionResult> ProductAdvertsListByEmployeeByTrue(int id)
         {    
-            var values=await _productRepository.GetAllProductAdvertListByEmployeeAsync(id);
+            var values=await _productRepository.GetAllProductAdvertListByEmployeeAsyncByTrue(id);
+            return Ok(values);
+        }
+
+
+        [HttpGet("ProductAdvertsListByEmployeeByFalse")]
+        public async Task<IActionResult> ProductAdvertsListByEmployeeByFalse(int id)
+        {
+            var values = await _productRepository.GetAllProductAdvertListByEmployeeAsyncByFalse(id);
             return Ok(values);
         }
     }
