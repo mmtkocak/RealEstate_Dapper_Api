@@ -13,6 +13,30 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             _context = context;
         }
 
+        public async Task CreateProduct(CreateProductDto createProductDto)
+        {
+            string query = "insert into Product (Title,Price,City,District,ProductCategory,CoverImage,Address,Description,Type,DealOfTheDay,AdversitementDate,ProductStatus,EmployeeID) values (@Title,@Price,@City,@District,@ProductCategory,@CoverImage,@Address,@Description,@Type,@DealOfTheDay,@AdversitementDate,@ProductStatus,@EmployeeID)";
+            var parameters = new DynamicParameters();
+            parameters.Add("@Title", createProductDto.Title);
+            parameters.Add("@Price", createProductDto.Price);
+            parameters.Add("@City", createProductDto.City);
+            parameters.Add("@District", createProductDto.District);
+            parameters.Add("@ProductCategory", createProductDto.ProductCategory);
+            parameters.Add("@CoverImage", createProductDto.CoverImage);
+            parameters.Add("@Address", createProductDto.Address);
+            parameters.Add("@Description", createProductDto.Description);
+            parameters.Add("@Type", createProductDto.Type);
+            parameters.Add("@DealOfTheDay", createProductDto.DealOfTheDay);
+            parameters.Add("@AdversitementDate", createProductDto.AdversitementDate);
+            parameters.Add("@ProductStatus", createProductDto.ProductStatus);
+            parameters.Add("@EmployeeID", createProductDto.EmployeeID);
+
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, parameters);
+            }
+        }
+
         public async Task<List<ResultProdcutWithCategoryDto>> GetAllProdcutWithCategoryAsync()
         {
             string query = "Select ProductID,Title,Price,City,District,CategoryName,CoverImage,Type,Address,DealOfTheDay from Product inner join Category on Product.ProductCategory=Category.CategoryID";
@@ -42,7 +66,7 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             parameters.Add("@employeeId", id);
             using (var connection = _context.CreateConnection())
             {
-                var values = await connection.QueryAsync<ResultProductAdvertListWithCategoryByEmployeeDto>(query,parameters);
+                var values = await connection.QueryAsync<ResultProductAdvertListWithCategoryByEmployeeDto>(query, parameters);
                 return values.ToList();
             }
         }

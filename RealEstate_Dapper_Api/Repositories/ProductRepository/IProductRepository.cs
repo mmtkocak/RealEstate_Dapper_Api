@@ -11,5 +11,7 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
         Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync();
         Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetAllProductAdvertListByEmployeeAsyncByTrue(int id);
         Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetAllProductAdvertListByEmployeeAsyncByFalse(int id);
+
+        Task CreateProduct(CreateProductDto createProductDto);
     }
 }
