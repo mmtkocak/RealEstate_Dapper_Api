@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using RealEstate_Dapper_Api.Dtos.ProductDetailDtos;
 using RealEstate_Dapper_Api.Dtos.ProductDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
 
@@ -92,7 +93,33 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             }
         }
 
-        public async void ProductDealOfTheDayStatusChangeToFalse(int id)
+        public async Task<GetProductByProductIdDto> GetProductByProductId(int id)
+        {
+            string query = "Select ProductID,Title,Price,City,District,CategoryName,CoverImage,AdversitementDate,Type,Address,DealOfTheDay from Product inner join Category on Product.ProductCategory=Category.CategoryID where ProductId=@productId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@productId", id);
+
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<GetProductByProductIdDto>(query, parameters);
+                return values.FirstOrDefault();
+            }
+        }
+
+        public async Task<GetProductDetailByIdDto> GetProductDetailByProductId(int id)
+        {
+            string query = "Select * from ProductDetails where ProductId=@productId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@productId", id);
+
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<GetProductDetailByIdDto>(query, parameters);
+                return values.FirstOrDefault();
+            }
+        }
+
+        public async Task ProductDealOfTheDayStatusChangeToFalse(int id)
         {
             string query = "update Product set DealOfTheDay=@dealOfTheDay where ProductId=@productId";
             var parameters = new DynamicParameters();
@@ -105,7 +132,7 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             }
         }
 
-        public async void ProductDealOfTheDayStatusChangeToTrue(int id)
+        public async Task ProductDealOfTheDayStatusChangeToTrue(int id)
         {
             string query = "update Product set DealOfTheDay=@dealOfTheDay where ProductId=@productId";
             var parameters = new DynamicParameters();
